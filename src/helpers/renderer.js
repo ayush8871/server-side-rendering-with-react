@@ -4,10 +4,10 @@ import { StaticRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import Routes from "../client/Routes";
 
-module.exports = (req, store) => {
+export default (req, store) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={req.path} context={{}}>
+      <StaticRouter location={req.url} context={{}}>
         <Routes />
       </StaticRouter>
     </Provider>
@@ -18,8 +18,8 @@ module.exports = (req, store) => {
       <head></head>
       <body>
         <div id="root">${content}</div>
+        <script src="bundle.js"></script>
       </body>
-      <script src="bundle.js"></script>
     </html>
   `;
 };
